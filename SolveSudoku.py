@@ -16,6 +16,11 @@ def Solve(grid):
 
 
 def FindEmptyLocation(grid):
+    """
+    To check if there is any empty cell in the board.
+    If present return the row and col of that cell
+    otherwise return None.
+    """
     for i in range(9):
         for j in range(9):
             if grid[i][j] == 0:
