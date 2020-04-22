@@ -14,8 +14,8 @@ class GUI:
         self.grid = grid
         self.rows = 9
         self.cols = 9
-        self.boxes = [[Box(self.grid[i][j], i, j, self.width, self.height) for j in range(self.cols)]
-                      for i in range(self.rows)]
+        self.boxes = [[Box(grid[i][j], i, j, self.width, self.height) for j in range(self.cols)]
+            for i in range(self.rows)]
 
     def draw_grid(self):
         space = self.width / 9
@@ -55,6 +55,7 @@ class GUI:
         return False
 
 
+
 def redrawWindow(win, grid):
     win.fill((255, 255, 255))
     grid.draw_grid()
@@ -62,23 +63,21 @@ def redrawWindow(win, grid):
 
 def main():
     g = Boards.get_board()
-    print(g)
 
-    grid = [
-        [7, 8, 0, 4, 0, 0, 1, 2, 0],
-        [6, 0, 0, 0, 7, 5, 0, 0, 9],
-        [0, 0, 0, 6, 0, 1, 0, 7, 8],
-        [0, 0, 7, 0, 4, 0, 2, 6, 0],
-        [0, 0, 1, 0, 5, 0, 9, 3, 0],
-        [9, 0, 4, 0, 6, 0, 0, 0, 5],
-        [0, 7, 0, 3, 0, 0, 0, 1, 2],
-        [1, 2, 0, 0, 0, 7, 4, 0, 0],
-        [0, 4, 9, 2, 0, 6, 0, 0, 7]
-    ]
-
+    # g = [
+    #     [0, 0, 5, 8, 4, 0, 6, 7, 0],
+    #     [0, 0, 0, 0, 7, 0, 0, 9, 2],
+    #     [2, 7, 0, 0, 0, 9, 0, 0, 0],
+    #     [0, 0, 0, 6, 0, 0, 3, 0, 0],
+    #     [4, 0, 0, 7, 0, 8, 0, 0, 5],
+    #     [0, 0, 8, 0, 0, 3, 0, 0, 0],
+    #     [0, 0, 0, 1, 0, 0, 0, 5, 9],
+    #     [1, 3, 0, 0, 8, 0, 0, 0, 0],
+    #     [0, 2, 4, 0, 6, 7, 8, 0, 0]
+    # ]
     window = pygame.display.set_mode((540, 600))
     pygame.display.set_caption("Sudoku")
-    grid = GUI(grid, 540, 540, window)
+    grid = GUI(g, 540, 540, window)
 
     run = True
     while run:

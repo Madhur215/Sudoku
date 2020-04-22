@@ -38,9 +38,9 @@ class Box:
         y_pos = dim / 2 - num.get_height() / 2
         window.blit(num, (x + x_pos, y + y_pos))
         if flag:
-            pygame.draw.rect(window, (0, 0, 255), (x, y, dim, dim), 2)
+            pygame.draw.rect(window, (0, 255, 0), (x, y, dim, dim), 3)
         else:
-            pygame.draw.rect(window, (255, 0, 0), (x, y, dim, dim), 2)
+            pygame.draw.rect(window, (255, 0, 0), (x, y, dim, dim), 3)
 
 
 
