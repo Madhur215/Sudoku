@@ -1,4 +1,5 @@
-import SolveSudoku as sd
+from SolveSudoku import isSafe, FindEmptyLocation
+import Boards
 from Box import Box
 import pygame
 pygame.init()
@@ -30,6 +31,29 @@ class GUI:
             for j in range(self.cols):
                 self.boxes[i][j].draw_boxes(self.window)
 
+    def solve(self):
+        box = FindEmptyLocation(self.grid)
+        if box:
+            r, c = box
+        else:
+            return True
+        for i in range(1, 10):
+            if isSafe(self.grid, r, c, i):
+                self.grid[r][c] = i
+                self.boxes[r][c].add_num(i)
+                self.boxes[r][c].update_box(self.window, True)
+                pygame.display.update()
+                pygame.time.delay(100)
+
+                if self.solve():
+                    return True
+                self.grid[r][c] = 0
+                self.boxes[r][c].add_num(0)
+                self.boxes[r][c].update_box(self.window, False)
+                pygame.display.update()
+                pygame.time.delay(100)
+        return False
+
 
 def redrawWindow(win, grid):
     win.fill((255, 255, 255))
@@ -37,6 +61,9 @@ def redrawWindow(win, grid):
 
 
 def main():
+    g = Boards.get_board()
+    print(g)
+
     grid = [
         [7, 8, 0, 4, 0, 0, 1, 2, 0],
         [6, 0, 0, 0, 7, 5, 0, 0, 9],
@@ -59,6 +86,9 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    grid.solve()
 
         redrawWindow(window, grid)
         pygame.display.update()
