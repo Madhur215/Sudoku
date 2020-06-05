@@ -24,8 +24,8 @@ class GUI:
                 thickness = 4
             else:
                 thickness = 1
-            pygame.draw.line(self.window, (0, 0, 0), (0, i * space), (self.width, i * space), thickness)
-            pygame.draw.line(self.window, (0, 0, 0), (i * space, 0), (i * space, self.height), thickness)
+            pygame.draw.line(self.window, (255, 255, 255), (0, i * space), (self.width, i * space), thickness)
+            pygame.draw.line(self.window, (255, 255, 255), (i * space, 0), (i * space, self.height), thickness)
 
         for i in range(self.rows):
             for j in range(self.cols):
@@ -57,7 +57,7 @@ class GUI:
 
 
 def redrawWindow(win, grid):
-    win.fill((255, 255, 255))
+    win.fill((0, 0, 0))
     grid.draw_grid()
 
 
